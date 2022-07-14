@@ -2,6 +2,7 @@ package com.projetoSpring.SpringBoot.controllers;
 
 import com.projetoSpring.SpringBoot.entities.Sale;
 import com.projetoSpring.SpringBoot.services.SaleService;
+import com.projetoSpring.SpringBoot.services.SmsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,14 +19,20 @@ public class SaleControler {
 
     @Autowired
     private SaleService service;
+    @Autowired
+    private SmsService smsService;
+
     @GetMapping
     public Page<Sale> findSales(
-            @RequestParam(value = "minDate", defaultValue = "")String minDate,
+            @RequestParam(value = "minDate", defaultValue = "") String minDate,
             @RequestParam(value = "maxDate", defaultValue = "") String maxDate,
-            Pageable pageable){
-        return service.findSales(minDate,maxDate,pageable);
+            Pageable pageable) {
+        return service.findSales(minDate, maxDate, pageable);
+    }
 
-
+    @GetMapping("/notification")
+    public void notifySms(){
+        smsService.sendSms();
 
     }
 

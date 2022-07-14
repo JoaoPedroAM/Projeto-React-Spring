@@ -12,6 +12,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+
 @Service
 public class SaleService {
 
@@ -19,7 +20,7 @@ public class SaleService {
     private SaleRepository repository;
 
 
-    public Page<Sale> findSales(String minDate,String maxDate,Pageable pageable) {
+    public Page<Sale> findSales(String minDate, String maxDate, Pageable pageable) {
 
         LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
 
